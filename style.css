@@ -28,6 +28,12 @@ body{
     justify-content: center;
     text-align: center;
 }
+.picContainer {
+    position: relative;
+    overflow: hidden;
+    width: 200px;
+    height: 200px;
+}
 
 img{
     width: 100px;
