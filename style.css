@@ -44,6 +44,11 @@ img:hover{
     width: 200%;
 }
 
+@font-face {
+    font-family: brittany;
+    src: url(BrittanySignature.ttf);
+}
+
 h1{
    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
    font: bolder;
