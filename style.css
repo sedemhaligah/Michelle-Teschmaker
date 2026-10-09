@@ -1,97 +1,215 @@
-body{
-    margin: 0;
-    padding: 0;
-    align-items: center;
-    background-color: #ecba9d;
-    justify-content: center;
+/* Palette drawn from her feed: rose-plaster walls, wine reds, sun-warmed ochre, palm green */
+:root {
+  --plaster: #ecd2c6;
+  --plaster-deep: #e2bfb1;
+  --wine: #6b1d29;
+  --wine-soft: #8c3a45;
+  --ochre: #985a28;
+  --palm: #2f5a3f;
+  --ink-muted: #7d4a4f;
+
+  --serif: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+  --sans: "Jost", "Futura", "Avenir Next", system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  min-height: 100%;
+  background: var(--plaster-deep);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f3e0d6 0%, var(--plaster) 45%, var(--plaster-deep) 100%);
+  color: var(--wine);
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.page {
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  padding: 40px 24px 48px;
+}
+
+/* The arch — echoes the doorways in her photos */
+.portrait {
+  margin: 0 auto 32px;
+  width: 78%;
+  aspect-ratio: 4 / 5;
+  border-radius: 999px 999px 6px 6px;
+  overflow: hidden;
+  outline: 1px solid rgba(107, 29, 41, 0.35);
+  outline-offset: 7px;
+  animation: rise 900ms cubic-bezier(.2,.7,.2,1) both;
+}
+
+.portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px) scale(.98); }
+  to   { opacity: 1; transform: none; }
+}
+
+.intro { text-align: center; }
+
+.name {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(2.6rem, 11vw, 3.4rem);
+  line-height: 0.98;
+  letter-spacing: -0.01em;
+}
+
+.role {
+  margin: 14px 0 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--wine-soft);
+}
+
+.bio {
+  margin: 12px auto 0;
+  max-width: 32ch;
+  color: var(--ink-muted);
+  font-size: 0.98rem;
+}
+
+/* Links as pressable buttons */
+.links {
+  margin-top: 32px;
+  display: grid;
+  gap: 12px;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 60px;
+  padding: 12px 26px;
+  border: 1px solid rgba(107, 29, 41, 0.45);
+  border-radius: 999px;
+  background: #f8ebe4;
+  box-shadow: 0 3px 0 rgba(107, 29, 41, 0.18);
+  color: var(--wine);
+  text-decoration: none;
+  transition: background-color 180ms ease, color 180ms ease, transform 120ms ease, box-shadow 120ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.link-name {
+  font-weight: 500;
+  font-size: 1.05rem;
+}
+
+.link-meta {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.98rem;
+  color: var(--ochre);
+  transition: color 180ms ease;
+}
+
+.link:hover {
+  background: var(--wine);
+  color: #f7e6dd;
+}
+
+.link:hover .link-meta { color: #e7c3b4; }
+
+.link:active {
+  transform: translateY(3px);
+  box-shadow: 0 0 0 rgba(107, 29, 41, 0.18);
+}
+
+.contact {
+  display: block;
+  margin-top: 28px;
+  padding: 18px 20px;
+  border-radius: 999px;
+  background: var(--wine);
+  color: #f7e6dd;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.02rem;
+  line-height: 1.3;
+  box-shadow: 0 3px 0 #3f0e16;
+  transition: background-color 180ms ease, transform 120ms ease, box-shadow 120ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.contact:active {
+  transform: translateY(3px);
+  box-shadow: 0 0 0 #3f0e16;
+}
+
+.contact-address {
+  display: block;
+  margin-top: 2px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.92rem;
+  color: #e7c3b4;
+}
+
+.contact:hover { background: #561520; }
+
+.footer {
+  margin-top: 28px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+}
+
+.footer p { margin: 0; }
+
+.footer a {
+  color: var(--palm);
+  text-underline-offset: 3px;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--palm);
+  outline-offset: 3px;
+}
+
+/* Desktop: arch on the left, everything else on the right */
+@media (min-width: 880px) {
+  .page {
+    max-width: 920px;
     min-height: 100vh;
-    display: flex;
-}
-
-.container{
-    background: linear-gradient(to bottom right, #F7DED0 50%, #E2BFB3 50%);
-    width: 100%;
-    padding: 40px;
-    margin: 70px;
-    border-radius: 30px;
+    padding: 64px 48px;
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 72px;
     align-items: center;
-    text-align: center;
-    color: teal;
-    max-width: 400px;
+  }
 
+  .portrait { width: 100%; margin: 0; }
+
+  .intro, .footer { text-align: left; }
+  .bio { margin-left: 0; }
+  .name { font-size: 4.2rem; }
 }
 
-
-.Names{
-    
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+@media (prefers-reduced-motion: reduce) {
+  .portrait { animation: none; }
+  .link, .contact, .link-meta { transition: none; }
 }
-
-img{
-    width: 100px;
-    border-radius: 50%;
-    margin-right: 10px;
-    transition: width 0.3s ease;
-}
-
-img:hover{
-    width:200px;
-}
-
-.zoomed{
-    width: 200%;
-}
-
-@font-face {
-    font-family: brittany;
-    src: url(BrittanySignature.ttf);
-}
-
-h1{
-   font-family: brittany;
-   font: bolder;
-   font-weight:800;
-   font-style: italic;
-   font-variant: small-caps;
-   margin-bottom: 3px;
-}
-h3{
-    margin-top: 3px;
-}
-
-a{
-    text-decoration: none;
-    color: teal;
-    border-radius: 20px;
-    background: black;
-}
-#myEmail{
-    
-    text-decoration: none;
-}
-
-.socialLinks{
-    padding: 5%;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    max-width: 300px;
-}
-
-#link{
-    padding: 5%;
-    margin: 2.5%;
-    background-color: #ecba9d;
-    border-radius: 30px;
-    width: 100%;
-    
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-}
-
-#link:hover{
-    background-color:#db7a5c;
-}
-
-
